@@ -33,6 +33,13 @@ body {
     z-index: 1000;
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(32, 227, 178, 0.1);
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.navbar.visible {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .nav-container {
@@ -119,7 +126,8 @@ body {
     position: relative;
     overflow: hidden;
     text-align: center;
-    padding: 100px 0 50px 0;
+    padding: 0;
+    margin-bottom: 150px;
 }
 
 .hero::before {
@@ -160,11 +168,7 @@ body {
 }
 
 .hero-image {
-    animation: fadeInUp 1s ease-out 0.3s both;
-    order: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
 }
 
 @keyframes fadeInUp {
@@ -288,15 +292,24 @@ body {
 .hero-avatar {
     width: 200px;
     height: 250px;
-    position: absolute;
-    top: -125px;
+    position: fixed;
+    bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    transition: all 0.3s ease;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease;
+    border-radius: 0;
+    overflow: visible;
+    box-shadow: none;
+    background: none;
+    border: none;
+    display: block;
+    opacity: 1;
+}
+
+.hero-avatar.fade-out {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.8);
 }
 
 .hero-avatar img {
@@ -305,6 +318,7 @@ body {
     object-fit: cover;
     transition: all 0.3s ease;
     filter: brightness(1.1) contrast(1.1);
+    border-radius: 0;
 }
 
 .hero-avatar:hover img {
@@ -312,19 +326,20 @@ body {
     filter: brightness(1.15) contrast(1.15);
 }
 
-/* Glow effect for hero image */
+/* Subtle glow effect for hero image */
 .hero-avatar::before {
     content: '';
     position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: radial-gradient(ellipse, rgba(32, 227, 178, 0.3) 0%, rgba(255, 107, 107, 0.2) 50%, transparent 70%);
-    border-radius: 20px;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(ellipse, rgba(32, 227, 178, 0.2) 0%, rgba(255, 107, 107, 0.1) 50%, transparent 70%);
+    border-radius: 0;
     z-index: -1;
     animation: glowPulse 4s ease-in-out infinite;
-    filter: blur(15px);
+    filter: blur(8px);
+    opacity: 0.6;
 }
 
 @keyframes glowPulse {
@@ -342,13 +357,20 @@ body {
 .hero-avatar.scroll-grow {
     width: 300px;
     height: 375px;
-    top: -187px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    bottom: 0;
+    transform: translateX(-50%);
 }
 
 .hero-avatar.scroll-grow::before {
-    filter: blur(20px);
+    filter: blur(12px);
     opacity: 0.8;
+}
+
+/* Image disappears when about section is visible */
+.hero-avatar.hide {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5);
+    pointer-events: none;
 }
 
 .scroll-indicator {
@@ -410,12 +432,13 @@ body {
 
 /* About Section - Perfectly Centered Design */
 .about {
-    padding: 200px 0 120px 0;
+    padding: 120px 0;
     background: #111111;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 150px;
 }
 
 .about::before {
@@ -445,7 +468,6 @@ body {
     width: 100%;
     margin: 0 auto;
     padding: 0 30px;
-    margin-top: 80px;
 }
 
 .about-text {
@@ -1138,11 +1160,15 @@ body {
     .hero-avatar {
         width: 150px;
         height: 200px;
+        bottom: 0;
+        transform: translateX(-50%);
     }
     
     .hero-avatar.scroll-grow {
         width: 200px;
         height: 250px;
+        bottom: 0;
+        transform: translateX(-50%);
     }
 
     .about-content {

@@ -673,7 +673,9 @@ const statsObserver = new IntersectionObserver((entries) => {
 // Scroll-based image size increase effect
 function initializeScrollBasedImageSize() {
     const heroAvatar = document.querySelector('.hero-avatar');
-    if (!heroAvatar) return;
+    const navbar = document.querySelector('.navbar');
+    const aboutSection = document.querySelector('.about');
+    if (!heroAvatar || !aboutSection) return;
 
     let ticking = false;
 
@@ -682,8 +684,14 @@ function initializeScrollBasedImageSize() {
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // Calculate scroll progress (0 to 1)
-        const scrollProgress = Math.min(scrollY / (documentHeight - windowHeight), 1);
+        // Get about section position
+        const aboutRect = aboutSection.getBoundingClientRect();
+        const aboutTop = aboutRect.top + scrollY;
+        const aboutBottom = aboutTop + aboutRect.height;
+        
+        // Calculate scroll progress (0 to 1) - only until about section starts
+        const maxScrollForGrowth = aboutTop - windowHeight;
+        const scrollProgress = Math.min(scrollY / Math.max(maxScrollForGrowth, 1), 1);
         
         // Calculate size based on scroll progress
         const minWidth = 200;
@@ -694,19 +702,47 @@ function initializeScrollBasedImageSize() {
         const currentWidth = minWidth + (maxWidth - minWidth) * scrollProgress;
         const currentHeight = minHeight + (maxHeight - minHeight) * scrollProgress;
         
-        // Calculate top position based on height (half of height to center on about section)
-        const currentTop = -(currentHeight / 2);
+        // Check if about section is visible
+        const isAboutVisible = aboutRect.top < windowHeight && aboutRect.bottom > 0;
         
-        // Apply size and position changes
+        // Check if we're on the home page (hero section visible)
+        const heroSection = document.querySelector('.hero');
+        const heroRect = heroSection.getBoundingClientRect();
+        const isHeroVisible = heroRect.top < windowHeight && heroRect.bottom > 0;
+        
+        // Only show image when hero section is visible and about section is not visible
+        const shouldShowImage = isHeroVisible && !isAboutVisible;
+        
+        // Apply size changes (image stays at bottom)
         heroAvatar.style.width = currentWidth + 'px';
         heroAvatar.style.height = currentHeight + 'px';
-        heroAvatar.style.top = currentTop + 'px';
+        heroAvatar.style.bottom = '0';
+        heroAvatar.style.transform = 'translateX(-50%)';
         
-        // Add/remove class for additional effects
+        // Show/hide navbar based on scroll
+        if (scrollY > 100) {
+            navbar.classList.add('visible');
+        } else {
+            navbar.classList.remove('visible');
+        }
+        
+        // Add/remove classes for effects
         if (scrollProgress > 0.3) {
             heroAvatar.classList.add('scroll-grow');
         } else {
             heroAvatar.classList.remove('scroll-grow');
+        }
+        
+        // Show/hide image based on page position
+        if (shouldShowImage) {
+            heroAvatar.classList.remove('hide');
+            heroAvatar.style.display = 'block';
+        } else {
+            heroAvatar.classList.add('hide');
+            // Hide completely when not on home page
+            if (!isHeroVisible) {
+                heroAvatar.style.display = 'none';
+            }
         }
         
         ticking = false;
