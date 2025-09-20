@@ -1215,16 +1215,201 @@ body {
         padding: 0 15px;
     }
 
+    .hero {
+        padding: 60px 0 100px;
+        min-height: 100vh;
+    }
+
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
     }
 
     .hero-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
     }
 
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+
+    .hero-avatar {
+        width: 120px;
+        height: 150px;
+        bottom: 20px;
+    }
+
+    .hero-avatar.scroll-grow {
+        width: 150px;
+        height: 180px;
+        bottom: 20px;
+    }
+
+    .about {
+        padding: 60px 0;
+        margin-top: 80px;
+    }
+
+    .about-content {
+        padding: 0 15px;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 100%;
+    }
+
+    .stat {
+        padding: 1.5rem;
+        max-width: 100%;
+    }
+
+    .stat h3 {
+        font-size: 2rem;
+    }
+
+    .stat p {
+        font-size: 0.9rem;
+    }
+
+    .skills {
+        padding: 60px 0;
+    }
+
+    .skills-grid {
+        padding: 0 15px;
+    }
+
+    .skill-category {
+        padding: 1.5rem;
+    }
+
+    .skill-category h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+
+    .skill-category h3 i {
+        font-size: 1.2rem;
+    }
+
+    .skill-items {
+        gap: 0.5rem;
+    }
+
+    .skill-item {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .projects {
+        padding: 60px 0;
+    }
+
+    .projects-grid {
+        padding: 0 15px;
+    }
+
+    .project-card {
+        height: auto;
+        min-height: 320px;
+    }
+
+    .project-image {
+        height: 120px;
+    }
+
+    .project-image i {
+        font-size: 2rem;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-content h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .project-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-tech {
+        gap: 0.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .project-tech span {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .project-links {
+        gap: 0.8rem;
+        flex-direction: column;
+    }
+
+    .project-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+        text-align: center;
+    }
+
+    .experience {
+        padding: 60px 0;
+    }
+
+    .timeline-item {
+        padding-left: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .timeline-marker {
+        left: 5px !important;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline::before {
+        left: 10px;
+    }
+
+    .contact {
+        padding: 60px 0;
+    }
+
+    .contact-content {
+        padding: 0 15px;
+    }
+
+    .contact-info h2 {
+        font-size: 2rem;
+    }
+
+    .contact-info p {
+        font-size: 1rem;
+    }
+
+    .contact-form {
+        padding: 2rem 1.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 0.8rem;
+        font-size: 1rem;
     }
 
     .hero-buttons {
@@ -1235,7 +1420,155 @@ body {
     .btn {
         width: 100%;
         text-align: center;
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
     }
+}
+
+/* iPhone X and newer specific adjustments */
+@media (max-width: 414px) and (max-height: 896px) {
+    .hero {
+        min-height: 100vh;
+        padding: 50px 0 80px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-avatar {
+        width: 100px;
+        height: 120px;
+        bottom: 10px;
+    }
+
+    .hero-avatar.scroll-grow {
+        width: 120px;
+        height: 150px;
+        bottom: 10px;
+    }
+
+    .about {
+        margin-top: 60px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* iPhone SE and smaller devices */
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-avatar {
+        width: 80px;
+        height: 100px;
+    }
+
+    .hero-avatar.scroll-grow {
+        width: 100px;
+        height: 120px;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
+    }
+
+    .stat h3 {
+        font-size: 1.8rem;
+    }
+
+    .skill-category h3 {
+        font-size: 1rem;
+    }
+
+    .project-content h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Landscape orientation for mobile devices */
+@media (max-width: 896px) and (orientation: landscape) {
+    .hero {
+        padding: 40px 0 60px;
+        min-height: 100vh;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-avatar {
+        width: 80px;
+        height: 100px;
+        bottom: 10px;
+    }
+
+    .hero-avatar.scroll-grow {
+        width: 100px;
+        height: 120px;
+        bottom: 10px;
+    }
+
+    .about {
+        margin-top: 40px;
+        padding: 40px 0;
+    }
+
+    .skills {
+        padding: 40px 0;
+    }
+
+    .projects {
+        padding: 40px 0;
+    }
+
+    .experience {
+        padding: 40px 0;
+    }
+
+    .contact {
+        padding: 40px 0;
+    }
+}
+
+/* iPhone-specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        min-height: -webkit-fill-available;
+    }
+    
+    .hero-avatar {
+        position: fixed;
+    }
+    
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+    }
+}
+
+/* Prevent zoom on input focus for iOS */
+input, textarea, select {
+    font-size: 16px;
 }
 
 /* Custom scrollbar */
